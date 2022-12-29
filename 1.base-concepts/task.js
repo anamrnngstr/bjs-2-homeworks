@@ -14,6 +14,15 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
    
+  if (isNaN(percent)) {
+    return false;
+  } else if (isNaN(contribution)) {
+    return false;
+  } else if (isNaN(amount)) {
+    return false;
+  } else if (isNaN(countMonths)) {
+    return false;
+  }
   let P = (percent / 100) / 12;
   let n = countMonths;
   let S = amount - contribution;
@@ -21,5 +30,4 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   let totalAmount = (paymentPerMonth * n).toFixed(2);
   return totalAmount;
 }
-// не понимаю как применить isNaN или Number.isNaN
-//пробовала сделать цикл if (isNaN(percent)) {return NaN} else {return percent}; но это почему то не работает
+console.log(calculateTotalMortgage(10, 0, 50000, 12));
