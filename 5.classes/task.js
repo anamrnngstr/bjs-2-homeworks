@@ -78,29 +78,19 @@ class Library {
         return this.book.state > 30 ? this.books.push(this.book) : 'this.book.state > 30 is required';
 }
     findBookBy(type, value) {
-        this.type = type;
-        this.value = value;
-        for (let i = 0; i < this.books.length; i++ ) {
-            if(this.books[i][this.type] == this.value) {
-                return this.value;
-            } else {
-                return null; // не понимаю, почему не работает
-            }
-        }
-    }
-   
-    giveBookByName(bookName){
-        for(let i = 0; i < this.books.length; i++){
-            if(bookName == this.name){
-                delete this.books[i];
-                return this.name;
-            } else {
-            return null;
-            }
-        }
-    }
+
+        return this.books.find(book => book[type] == value) || null;
 
 }
+    giveBookByName(bookName) {
+    
+        let index = this.books.findIndex(element => element.name == bookName);
+        if (index == -1) {
+          return null;
+        } else{
+          let arr = this.books.splice(index, 1);
+          return arr[0];
+        }
 
-
-
+    }
+}
