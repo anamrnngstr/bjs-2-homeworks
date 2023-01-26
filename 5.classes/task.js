@@ -94,3 +94,66 @@ class Library {
 
     }
 }
+
+// EXERCISE 3 ==========================================
+function Student(name, gender, age) {
+    this.name = name;
+    this.gender = gender;
+    this.age = age;
+    this.marks = [];
+}
+let students = [
+   new Student('Oleg', 'male', 26),
+   new Student('Olga', 'female', 23),
+   new Student('Jack', 'male', 21),
+]
+
+Student.prototype.setSubject = function (subjectName) {
+    this.subject = subjectName;
+}
+
+
+Student.prototype.addMarks = function (...marks) {
+
+    return this.marks ? this.marks.push(...marks) : 'student expelled';
+
+}
+
+Student.prototype.getAverage = function () {
+    return !this.marks || !this.marks.length ? 0 : this.marks.reduce((counter, value) => counter + value, 0)/this.marks.length;
+}
+
+Student.prototype.exclude = function (reason) {
+  this.excluded = reason;
+  return delete this.marks && this.subject;
+}
+
+//## Задача 3. Журнал успеваемости *
+
+//> Это задача со звёздочкой. Её выполнение не влияет на получение допуска к дипломной работе, 
+//но поможет усвоить пройденный материал. 
+
+class Student {
+    constructor (name, ...marks) {
+        this.name = name;
+        this.marks = [];
+        
+    }
+}
+
+Мы продолжаем совершенствовать журнал успеваемости студентов. Нужно преобразовать код прошлого ДЗ к классам. 
+Реализуйте возможности:
+
+1. В конструкторе класса сохраняйте имя пользователя и создавайте свойство для хранения оценок.
+<details>
+  <summary>В какой структуре хранить оценки по разным предметам?</summary>
+    Удобней всего хранить оценки ввиде объекта, где свойством будет название предмета, 
+    а значением свойства — массив оценок по этому предмету. Начальным значением будет пустой объект.
+
+    {
+      "физика": [4, 5, 5, 4],
+      "химия": [3, 4],
+      "литература": [4],
+      "ифнорматика": [5, 5, 5]
+    }
+</details>
