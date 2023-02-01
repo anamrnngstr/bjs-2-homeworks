@@ -26,17 +26,33 @@ class AlarmClock {
         return date.getHours().toString() + ':' + date.getMinutes().toString();
     }
     start() {
-        if (this.intervalId === null) {
-           setInterval(() => {
-                let arr = this.alarmCollection;
-                if (arr.forEach(el => el.time == this.getCurrentFormattedTime())) {
-                    el.canCall = false;
-                    return el.callback();
-             }
-
-             }, 1000)
-        } 
-        return;
+            if (this.intervalId === null) {
+               setInterval(() => {
+                    let arr = this.alarmCollection;
+                    arr.forEach(el => {
+                        if (el.time == this.getCurrentFormattedTime()) {
+                            el.canCall = false;
+                            return el.callback();
+                        }
+                    }
+                    )
+                    }, 1000)
+            } 
+            return;
+        // if (this.intervalId !== null) {
+        //     return;
+        // }
+        //   this.intervalId = setInterval(() => {
+        //         let arr = this.alarmCollection;
+        //         arr.forEach(el => checkout(el));
+        //      }, 1000) 
+        //      const checkout = (el) => {
+        //         if (el.time == this.getCurrentFormattedTime()) {
+        //             el.canCall = false;
+        //             return el.callback();
+        //         }
+        //      }
+    
     }
          
         
